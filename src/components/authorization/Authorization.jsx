@@ -1,8 +1,10 @@
-import React from "react";
-import useLoginService from "../services/LoginService";
+import store from "../../store/store";
 
-// const Authorization => () => {
-//
-// }
+const Authorization = () => {
+    const login = store.getState().login;
+    const password = store.getState().password;
 
-// export default  Authorization;
+    return (<p>Hello World</p>);
+}
+
+export default  Authorization;
