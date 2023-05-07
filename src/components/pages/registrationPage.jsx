@@ -10,7 +10,7 @@ const RegistrationPage = () => {
     const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const [confirm_password, setConfirmPassword] = useState('');
     const group = "4";
 
     const dispatch = useDispatch();
@@ -26,9 +26,11 @@ const RegistrationPage = () => {
             lastname,
             email,
             password,
-            confirmPassword,
+            confirm_password,
             group
         }
+
+        console.log(data)
 
         await registration(data)
             .then(res => dispatch(setCurrentUser(res.user)))
@@ -61,7 +63,7 @@ const RegistrationPage = () => {
                                        value={password}
                                        onChange={e => setPassword(e.target.value)}/>
                             <InputAuth inputLabel={'Подтверждение пароля'} inputName={'confirmPassword'} inputType={'password'}
-                                       value={confirmPassword}
+                                       value={confirm_password}
                                        onChange={e => setConfirmPassword(e.target.value)}/>
                             <button type="submit"
                                     className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
