@@ -1,6 +1,16 @@
-import Server from "./Server";
+import Server from "./server";
 
 const useAuthService = () => {
+    const registration = async (data) => {
+        let res = await fetch(`${Server}/api/Auth.Registration`, {
+            method: 'POST',
+            body: JSON.stringify(data)
+        }).then(response => response.json())
+            .then(json => console.log(json));
+
+        return res.result;
+    }
+
     const logIn = async (data) => {
         let res = await fetch(`${Server}/api/Auth.Login`, {
             method: 'POST',
@@ -20,7 +30,7 @@ const useAuthService = () => {
         return res.result;
     }
 
-    return {logIn, logOut}
+    return {registration, logIn, logOut}
 }
 
 export default useAuthService;

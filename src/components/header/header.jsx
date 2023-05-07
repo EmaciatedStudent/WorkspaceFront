@@ -3,7 +3,7 @@ import {Avatar, Dropdown, Navbar} from "flowbite-react";
 import {useDispatch, useSelector} from "react-redux";
 import {getCurrentUser} from "../../store/user/selectors";
 import {setCurrentUser} from "../../store/user/slice";
-import useAuthService from "../../services/AuthService";
+import useAuthService from "../../services/authService";
 
 const AppHeader = () => {
     const dispatch = useDispatch();
@@ -60,6 +60,12 @@ const AppHeader = () => {
                     </Link>
                     <Link to={'login'}>
                         Логин
+                    </Link>
+                    <Link to={'registration'}>
+                        Регистрация
+                    </Link>
+                    <Link to={'test'}>
+                        Тест
                     </Link>
                 </Navbar.Collapse>
             </Navbar>

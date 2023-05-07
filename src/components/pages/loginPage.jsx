@@ -1,5 +1,5 @@
 import InputAuth from "../inputs/InputAuth";
-import useAuthService from "../../services/AuthService";
+import useAuthService from "../../services/authService";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {setCurrentUser} from "../../store/user/slice";
@@ -44,7 +44,7 @@ const LoginPage = () => {
                                 onChange={e => setLogin(e.target.value)}/>
                             <InputAuth
                                 inputLabel={'Пароль'} inputName={'password'} inputType={'password'}
-                                vale={password}
+                                value={password}
                                 onChange={e => setPassword(e.target.value)}/>
                         </div>
                         <div className="flex items-center space-x-4">

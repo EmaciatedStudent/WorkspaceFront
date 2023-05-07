@@ -8,6 +8,7 @@ import UserPage from "../pages/userPage";
 import TestPage from "../pages/test";
 import RootApp from "../rootApp/rootApp";
 import LoginPage from "../pages/loginPage";
+import RegistrationPage from "../pages/registrationPage";
 
 function App() {
     const dispatch = useDispatch();
@@ -21,6 +22,10 @@ function App() {
                 {
                     path: "login",
                     element: <LoginPage/>,
+                },
+                {
+                    path: "registration",
+                    element: <RegistrationPage/>,
                 },
                 {
                     path: "test",
