@@ -1,12 +1,18 @@
-import InputAuth from "../inputs/InputAuth";
-import useAuthService from "../../services/authService";
-import {useState} from "react";
 import {useDispatch} from "react-redux";
+import {useLocation, useNavigate} from "react-router-dom";
+import {useState} from "react";
+
+import InputAuth from "../inputs/InputAuth";
 import {setCurrentUser} from "../../store/user/slice";
+import useAuthService from "../../services/authService";
 
 const LoginPage = () => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const fromPage = location.state?.from?.pathname || '/';
 
     const dispatch = useDispatch();
 
@@ -21,7 +27,7 @@ const LoginPage = () => {
         }
 
         await logIn(data)
-            .then(res => dispatch(setCurrentUser(res.user)))
+            .then(res => dispatch(setCurrentUser(res.user?res.user:null))).then(()=>navigate(fromPage, {replace: true}))
             .catch(res => console.log(res));
     }
 

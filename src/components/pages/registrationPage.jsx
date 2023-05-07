@@ -1,8 +1,9 @@
-import InputAuth from "../inputs/InputAuth";
-import useAuthService from "../../services/authService";
 import {useDispatch} from "react-redux";
-import {setCurrentUser} from "../../store/user/slice";
 import {useState} from "react";
+
+import InputAuth from "../inputs/InputAuth";
+import {setCurrentUser} from "../../store/user/slice";
+import useAuthService from "../../services/authService";
 
 const RegistrationPage = () => {
     const [login, setLogin] = useState('');
