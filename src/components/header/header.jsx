@@ -6,6 +6,8 @@ import {getCurrentUser} from "../../store/user/selectors";
 import {setCurrentUser} from "../../store/user/slice";
 import useAuthService from "../../services/authService";
 
+import logo from "../../resourses/logo.png"
+
 const AppHeader = () => {
     const dispatch = useDispatch();
     const user = useSelector(getCurrentUser);
@@ -23,52 +25,37 @@ const AppHeader = () => {
     return (
         <header>
             <Navbar fluid={true} rounded={true}>
-                <Navbar.Brand href="https://flowbite.com/">
-                    <img src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-9"
-                         alt="Flowbite Logo"/>
-                    <span
-                        className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Flowbite</span>
+                <Navbar.Brand>
+                    <img src={logo}/>
                 </Navbar.Brand>
 
-                <div className="flex md:order-2">
+                {user ? <>
+                    <div className="flex md:order-2">
 
-                    <Dropdown arrowIcon={true} inline={true} label={<span
-                        className="self-center ">{user ? user.name + ' ' + user.last_name : ''}</span>}>
+                        <Dropdown arrowIcon={true} inline={true} label={<span
+                            className="elf-center text-violet-800">{user ? user.name + " " + user.last_name : ""}</span>}>
 
-                        <Dropdown.Item>
-                            Личный кабинет
-                        </Dropdown.Item>
+                            <Dropdown.Divider/>
 
-                        <Dropdown.Divider/>
+                            <Dropdown.Item>
+                                <Link to={'profile'}>
+                                    Личный кабинет
+                                </Link>
+                            </Dropdown.Item>
 
-                        {
-                            user ?
-                                <Dropdown.Item onClick={logOutClick}>
-                                    Sign out
-                                </Dropdown.Item>
-                                : null
-                        }
+                            <Dropdown.Item onClick={logOutClick}>
+                                Выход
+                            </Dropdown.Item>
 
-                    </Dropdown>
-
-                    <Navbar.Toggle/>
-                </div>
-
-                <Navbar.Collapse>
-                    <Link to={'/'}>
-                        Главная
-                    </Link>
-                    <Link to={'login'}>
-                        Логин
-                    </Link>
-                    <Link to={'registration'}>
-                        Регистрация
-                    </Link>
-                    <Link to={'test'}>
-                        Тест
-                    </Link>
-                </Navbar.Collapse>
-
+                        </Dropdown>
+                        <Navbar.Toggle/>
+                    </div>
+                    <Navbar.Collapse>
+                        <Link to={''}>
+                            Переговорные и конференц-залы
+                        </Link>
+                    </Navbar.Collapse>
+                </> : null}
             </Navbar>
         </header>
     );

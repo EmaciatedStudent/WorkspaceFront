@@ -6,25 +6,54 @@ import LoginApp from "../appContainers/loginApp";
 import LoginPage from "../pages/loginPage";
 import RegistrationPage from "../pages/registrationPage";
 import RootApp from "../appContainers/rootApp";
-import TestPage from "../pages/test";
+
+import useUserService from "../../services/userService";
+import {useEffect} from "react";
+import {setCurrentUser} from "../../store/user/slice";
+import ProfilePage from "../pages/profilePage";
+import {RootLoader} from "../routerLoaders/rootLoader";
+
 
 function App() {
+    const {getUser}  = useUserService();
+
+    const dispatch = useDispatch();
+
+    useEffect( () => {
+        console.log('main')
+        getUser().then(res => dispatch(setCurrentUser(res.user?res.user:null)))
+            .catch(res => console.log(res));
+    }, [])
+
     const router = createBrowserRouter([
         {
             path: "/",
             element: <RootApp/>,
             children: [
                 {
-                    path: "login",
-                    element: <LoginPage/>,
-                },
+                    path: "profile",
+                    element: <ProfilePage/>,
+                }
+            ],
+            loader: RootLoader
+        },
+        {
+            path: "login",
+            element: <LoginApp/>,
+            children: [
                 {
-                    path: "registration",
-                    element: <RegistrationPage/>,
-                },
+                    path: "",
+                    element: <LoginPage/>
+                }
+            ]
+        },
+        {
+            path: "registration",
+            element: <LoginApp/>,
+            children: [
                 {
-                    path: "test",
-                    element: <TestPage/>,
+                    path: "",
+                    element: <RegistrationPage/>
                 }
             ]
         }

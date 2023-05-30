@@ -1,6 +1,5 @@
 import {Navigate, useLocation} from "react-router-dom";
 import {useDispatch} from "react-redux";
-
 import {setCurrentUser} from "../../store/user/slice";
 
 const RequireAuth = ({user, children}) => {

@@ -1,7 +1,6 @@
 import {getCurrentUser} from "../../store/user/selectors";
 import {Navigate, Outlet} from "react-router-dom";
 import {useSelector} from "react-redux";
-
 import AppHeader from "../header/header";
 
 const LoginApp = () => {

@@ -1,13 +1,19 @@
-import {Outlet} from "react-router-dom";
+import {Outlet, useLoaderData} from "react-router-dom";
 import AppHeader from "../header/header";
+import RequireAuth from "../requireAuth/requireAuth";
 
 const RootApp = () => {
+    const {user} = useLoaderData();
+
     return(
         <>
             <AppHeader/>
-            <main>
-                <Outlet/>
-            </main>
+
+            <RequireAuth user={user}>
+                <main>
+                    <Outlet/>
+                </main>
+            </RequireAuth>
         </>
     );
 }

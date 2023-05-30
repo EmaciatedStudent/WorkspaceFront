@@ -5,9 +5,9 @@ const useAuthService = () => {
         let res = await fetch(`${Server}/api/Auth.Registration`, {
             method: 'POST',
             body: JSON.stringify(data)
-        }).then(response => response.json())
-            .then(json => console.log(json));
+        }).then(response => response.json());
 
+        if(res.status === 'error') throw await res.error_message;
         return res.result;
     }
 
@@ -15,18 +15,18 @@ const useAuthService = () => {
         let res = await fetch(`${Server}/api/Auth.Login`, {
             method: 'POST',
             body: JSON.stringify(data)
-        }).then(response => response.json())
-            .then(json => console.log(json));
+        }).then(response => response.json());
 
+        if(res.status === 'error') throw await res.error_message;
         return res.result;
     }
 
     const logOut = async () => {
         let res = await fetch(`${Server}/api/Auth.Logout`, {
             method: 'GET'
-        }).then(response => response.json())
-            .then(json => console.log(json));
+        }).then(response => response.json());
 
+        if(res.status === 'error') throw await res.error_message;
         return res.result;
     }
 
