@@ -12,6 +12,8 @@ import {useEffect} from "react";
 import {setCurrentUser} from "../../store/user/slice";
 import ProfilePage from "../pages/profilePage";
 import {RootLoader} from "../routerLoaders/rootLoader";
+import RoomsPage from "../pages/roomsPage";
+import {RoomsLoader} from "../routerLoaders/roomsLoader";
 
 
 function App() {
@@ -30,6 +32,11 @@ function App() {
             path: "/",
             element: <RootApp/>,
             children: [
+                {
+                    path: "rooms",
+                    element: <RoomsPage/>,
+                    loader: RoomsLoader
+                },
                 {
                     path: "profile",
                     element: <ProfilePage/>,

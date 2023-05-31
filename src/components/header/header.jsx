@@ -51,7 +51,7 @@ const AppHeader = () => {
                         <Navbar.Toggle/>
                     </div>
                     <Navbar.Collapse>
-                        <Link to={''}>
+                        <Link to={'rooms'}>
                             Переговорные и конференц-залы
                         </Link>
                     </Navbar.Collapse>
