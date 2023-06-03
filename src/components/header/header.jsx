@@ -54,6 +54,12 @@ const AppHeader = () => {
                         <Link to={'rooms'}>
                             Переговорные и конференц-залы
                         </Link>
+                        {/*<Link to={'shedule'}>*/}
+                        {/*    Расписание*/}
+                        {/*</Link>*/}
+                        {/*<Link to={'test'}>*/}
+                        {/*    Тест*/}
+                        {/*</Link>*/}
                     </Navbar.Collapse>
                 </> : null}
             </Navbar>

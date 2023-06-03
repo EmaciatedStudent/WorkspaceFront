@@ -31,7 +31,10 @@ const RegistrationPage = () => {
             group
         }
 
-        console.log(data)
+        let dealId = (new URL(document.location)).searchParams.get("dealid");
+        if(dealId){
+            data['dealid'] = dealId
+        }
 
         await registration(data)
             .then(res => dispatch(setCurrentUser(res.user)))

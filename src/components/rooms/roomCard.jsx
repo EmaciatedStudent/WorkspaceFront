@@ -27,7 +27,8 @@ const RoomCard = ({room}) => {
                 <Link to={id}
                       className="mt-2 self-end inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-violet-800 rounded-lg hover:bg-violet-900 focus:ring-4 focus:outline-none focus:ring-violet-500 ">
                     Редактировать
-                </Link> : null}
+                </Link>
+                 : null}
         </div>
     )
 }

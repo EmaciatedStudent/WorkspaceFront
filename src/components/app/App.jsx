@@ -14,6 +14,9 @@ import ProfilePage from "../pages/profilePage";
 import {RootLoader} from "../routerLoaders/rootLoader";
 import RoomsPage from "../pages/roomsPage";
 import {RoomsLoader} from "../routerLoaders/roomsLoader";
+// import ShedulePage from "../pages/shedulePage";
+// import TestPage from "../pages/testPage";
+// import {IntervalsLoader} from "../routerLoaders/intervalsLoader";
 
 
 function App() {
@@ -40,7 +43,16 @@ function App() {
                 {
                     path: "profile",
                     element: <ProfilePage/>,
-                }
+                },
+                // {
+                //     path: "shedule",
+                //     element: <ShedulePage/>,
+                // },
+                // {
+                //     path: "test",
+                //     element: <TestPage/>,
+                //     loader: IntervalsLoader
+                // }
             ],
             loader: RootLoader
         },

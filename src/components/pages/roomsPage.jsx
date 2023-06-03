@@ -9,7 +9,7 @@ const RoomsPage = () => {
     const {roomsData} = useLoaderData();
     const items = renderRooms();
 
-    function renderRooms (){
+    function renderRooms () {
         return roomsData.map(room => {
             return <RoomCard room={room}/>
         })
@@ -24,7 +24,8 @@ const RoomsPage = () => {
                             type="button">
                         Добавить
                     </button>
-                </div> : null}
+                </div>
+                 : null}
 
             <table>
                 <div className="w-screen">{items}</div>
