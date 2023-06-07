@@ -29,39 +29,37 @@ const AppHeader = () => {
                     <img src={logo}/>
                 </Navbar.Brand>
 
-                {user ? <>
-                    <div className="flex md:order-2">
+                {user ?
+                    <>
+                        <div className="flex md:order-2">
 
-                        <Dropdown arrowIcon={true} inline={true} label={<span
-                            className="elf-center text-violet-800">{user ? user.name + " " + user.last_name : ""}</span>}>
+                            <Dropdown arrowIcon={true} inline={true} label={<span
+                                className="elf-center text-violet-800">{user ? user.name + " " + user.last_name : ""}</span>}>
 
-                            <Dropdown.Divider/>
+                                <Dropdown.Divider/>
 
-                            <Dropdown.Item>
-                                <Link to={'profile'}>
-                                    Личный кабинет
-                                </Link>
-                            </Dropdown.Item>
+                                <Dropdown.Item>
+                                    <Link to={'profile'}>
+                                        Личный кабинет
+                                    </Link>
+                                </Dropdown.Item>
 
-                            <Dropdown.Item onClick={logOutClick}>
-                                Выход
-                            </Dropdown.Item>
+                                <Dropdown.Item onClick={logOutClick}>
+                                    Выход
+                                </Dropdown.Item>
 
-                        </Dropdown>
-                        <Navbar.Toggle/>
-                    </div>
-                    <Navbar.Collapse>
-                        <Link to={'rooms'}>
-                            Переговорные и конференц-залы
-                        </Link>
-                        {/*<Link to={'shedule'}>*/}
-                        {/*    Расписание*/}
-                        {/*</Link>*/}
-                        {/*<Link to={'test'}>*/}
-                        {/*    Тест*/}
-                        {/*</Link>*/}
-                    </Navbar.Collapse>
-                </> : null}
+                            </Dropdown>
+                            <Navbar.Toggle/>
+                        </div>
+                        <Navbar.Collapse>
+                            <Link to={'rooms'}>
+                                Переговорные и конференц-залы
+                            </Link>
+                            <Link to={'addRoom'}>
+                                Добавить комнату
+                            </Link>
+                        </Navbar.Collapse>
+                    </> : null}
             </Navbar>
         </header>
     );

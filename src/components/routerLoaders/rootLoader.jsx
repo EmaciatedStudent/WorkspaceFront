@@ -13,5 +13,7 @@ export async function RootLoader() {
     //     email: 'test@legacystudio.ru'};
     // user = user? user : userForLocal;
 
+    console.log(user);
+
     return {user};
 }

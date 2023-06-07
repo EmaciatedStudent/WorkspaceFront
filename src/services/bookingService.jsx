@@ -1,8 +1,8 @@
 import Server from "./server";
 
-const useRoomService = () => {
-    const getRooms = async () => {
-        let res = await fetch(`${Server}/api/Room.GetRoomsInfo`, {
+const useBookingService = () => {
+    const getTimeIntervals = async () => {
+        let res = await fetch(`${Server}/api/Booking.GetTimeIntervals`, {
             method: 'GET',
         }).then(response => response.json());
 
@@ -10,12 +10,14 @@ const useRoomService = () => {
         return res.result;
     }
 
-    const getRoom = async (room_id) => {
+    const getBookingsByPeriod = async (room_id, date_start, date_end) => {
         const data = {
-            room_id
+            room_id,
+            date_start,
+            date_end
         }
 
-        let res = await fetch(`${Server}/api/Room.GetRoom`, {
+        let res = await fetch(`${Server}/api/Booking.GetBookingByPeriod`, {
             method: 'POST',
             body: JSON.stringify(data)
         }).then(response => response.json());
@@ -24,8 +26,8 @@ const useRoomService = () => {
         return res.result;
     }
 
-    const addRoom = async (data) => {
-        let res = await fetch(`${Server}/api/Room.AddRoom`, {
+    const addBooking = async (data) => {
+        let res = await fetch(`${Server}/api/Booking.AddBooking`, {
             method: 'POST',
             body: JSON.stringify(data)
         }).then(response => response.json());
@@ -34,7 +36,7 @@ const useRoomService = () => {
         return res.result;
     }
 
-    return {getRooms, getRoom, addRoom}
+    return {getTimeIntervals, getBookingsByPeriod, addBooking};
 }
 
-export default useRoomService;
+export default useBookingService;

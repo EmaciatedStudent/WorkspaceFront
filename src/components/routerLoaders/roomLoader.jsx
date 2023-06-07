@@ -5,7 +5,7 @@ export async function RoomLoader({params}) {
 
     const {getRoom} = useRoomService();
 
-    let roomData = await getRoom(room_id)
+    let roomData = await getRoom(room_id).then(res => res.room_info)
         .catch(res => console.log(res));
 
     return {roomData};

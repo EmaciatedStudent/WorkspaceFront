@@ -14,10 +14,9 @@ import ProfilePage from "../pages/profilePage";
 import {RootLoader} from "../routerLoaders/rootLoader";
 import RoomsPage from "../pages/roomsPage";
 import {RoomsLoader} from "../routerLoaders/roomsLoader";
-// import ShedulePage from "../pages/shedulePage";
-// import TestPage from "../pages/testPage";
-// import {IntervalsLoader} from "../routerLoaders/intervalsLoader";
-
+import SchedulePage from "../pages/schedulePage";
+import {BookingLoader} from "../routerLoaders/bookingLoader";
+import AddRoomPage from "../pages/addRoomPage";
 
 function App() {
     const {getUser}  = useUserService();
@@ -36,6 +35,15 @@ function App() {
             element: <RootApp/>,
             children: [
                 {
+                    path: "rooms/:id",
+                    element: <SchedulePage/>,
+                    loader: BookingLoader
+                },
+                {
+                    path: "rooms/addRoom",
+                    element: <AddRoomPage/>
+                },
+                {
                     path: "rooms",
                     element: <RoomsPage/>,
                     loader: RoomsLoader
@@ -44,15 +52,10 @@ function App() {
                     path: "profile",
                     element: <ProfilePage/>,
                 },
-                // {
-                //     path: "shedule",
-                //     element: <ShedulePage/>,
-                // },
-                // {
-                //     path: "test",
-                //     element: <TestPage/>,
-                //     loader: IntervalsLoader
-                // }
+                {
+                    path: "addRoom",
+                    element: <AddRoomPage/>
+                }
             ],
             loader: RootLoader
         },

@@ -1,4 +1,4 @@
-import {useLoaderData} from "react-router-dom";
+import {Link, useLoaderData} from "react-router-dom";
 import RoomCard from "../rooms/roomCard";
 import {useSelector} from "react-redux";
 import {getCurrentUser} from "../../store/user/selectors";
@@ -17,19 +17,23 @@ const RoomsPage = () => {
 
     return (
         <div className="mt-8">
-            {user.group.name === "Администратор" ?
-                <div className=" flex float-right">
+            <div className="flex float-right">
+                <Link to={'addRoom'}>
+
                     <button id="defaultModalButton" data-modal-toggle="defaultModal"
-                            className="mr-4 block text-white bg-violet-800 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-violet-900 dark:hover:bg-violet-800 dark:focus:ring-primary-800"
+                            className="flex mr-4 block text-white bg-violet-800 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-violet-900 dark:hover:bg-violet-800 dark:focus:ring-primary-800"
                             type="button">
                         Добавить
                     </button>
-                </div>
-                 : null}
 
-            <table>
+                </Link>
+            </div>
+            {/*{user.group.name === "Администратор" ?*/}
+            {/*     : null}*/}
+
+            <div className="w-screen flex">
                 <div className="w-screen">{items}</div>
-            </table>
+            </div>
         </div>
     )
 }
