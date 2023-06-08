@@ -29,7 +29,6 @@ const RoomCard = ({room}) => {
                     Редактировать
                 </Link>
                  : null}
-
         </div>
     )
 }

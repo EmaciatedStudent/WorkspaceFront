@@ -22,20 +22,26 @@ const DaySchedule = ({currentDate, date, room_id, timeIntervals, bookingsData, b
     const bookInterval = async(date, time_start, time_end) => {
         const dealInfo = await getCompanyDeal(user.company_id).then(res => res.deal);
         // const dealInfo = 4;
-
-        if (+dealInfo['hours_count'] > +dealInfo['bookings_count']) {
-            const data = {
-                name: "Бронирование от " + currentDate,
-                user_id: user.id,
-                // user_id: 1,
-                room_id,
-                date,
-                time_start,
-                time_end
-            }
-
-            await addBooking(data).then(res => bookingsSetState([...bookingsData, res]));
+        console.log('ок')
+        // if (+dealInfo['hours_count'] > +dealInfo['bookings_count']) {
+        //
+        // }
+        const data = {
+            name: "Бронирование от " + currentDate,
+            user_id: user.id,
+            // user_id: 1,
+            room_id,
+            date,
+            time_start,
+            time_end
         }
+
+        // await addBooking(data).then(res => bookingsSetState(bookingsData => [...bookingsData, res]));
+        await addBooking(data).then(res => {
+            console.log('yes')
+            bookingsSetState(bookingsData => [...bookingsData, res]);
+            console.log('veryyes');
+        });
     }
 
     const deleteBookingClick = async(booking_id) => {
@@ -43,7 +49,7 @@ const DaySchedule = ({currentDate, date, room_id, timeIntervals, bookingsData, b
             booking_id
         }
 
-        await deleteBooking(data).then(res => {});
+        await deleteBooking(data);
     }
 
     const dayCells = getCells();

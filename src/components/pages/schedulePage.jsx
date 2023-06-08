@@ -7,7 +7,9 @@ import {useState} from "react";
 const SchedulePage = () => {
     const {intervalsData, bookingsData, roomData, currentDate, currentWeekDates, currentWeek} = useLoaderData();
 
-    const [bookingData, setBookingData] = useState([]);
+    // console.log(bookingsData);
+    const [bookingData, setBookingData] = useState([...bookingsData]);
+    console.log(bookingData);
     const [weekDate, setWeekDate] = useState();
 
     function renderDay(date) {
@@ -15,7 +17,7 @@ const SchedulePage = () => {
                             date={date}
                             room_id={roomData.id}
                             timeIntervals={intervalsData}
-                            bookingsData={bookingsData}
+                            bookingsData={bookingData}
                             bookingsSetState={setBookingData}/>
     }
 
