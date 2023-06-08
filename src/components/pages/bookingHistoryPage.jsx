@@ -8,6 +8,8 @@ const BookingHistoryPage = () => {
     const {bookingsData} = useLoaderData();
     const {deleteBooking} = useBookingService()
 
+    const [bookingData, setBookingData] = useState([...bookingsData]);
+
     const currentDate = new Date();
 
     const formatDate = (date, time) => {
@@ -21,7 +23,9 @@ const BookingHistoryPage = () => {
             booking_id
         }
 
-        await deleteBooking(data);
+        await deleteBooking(data).then(res => {
+            setBookingData(bookingData => bookingData.filter(booking => +booking['id'] != +res.booking_id))
+        });
     }
 
     return (
@@ -53,7 +57,7 @@ const BookingHistoryPage = () => {
                         </tr>
                         </thead>
                         <tbody>
-                        {bookingsData.map((booking, key) => (
+                        {bookingData.map((booking, key) => (
                             <tr key={key} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td className="px-6 py-4">
                                     {booking['name']}

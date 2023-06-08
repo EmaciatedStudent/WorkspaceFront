@@ -12,11 +12,12 @@ const DaySchedule = ({currentDate, date, room_id, timeIntervals, bookingsData, b
 
     const [isExtraHours, setIsExtraHours] = useState(false);
 
-    function getBookingByInteval(interval_start, interval_end) {
-        return bookingsData.find(booking => booking['date'] === date
-            && booking['time_start'] === interval_start
-            && booking['time_end'] === interval_end
-        )
+    const currentDateFormat = new Date();
+
+    const formatDate = (date, time) => {
+        date = date.split('.');
+
+        return new Date(date[1]+'.'+date[0]+'.'+date[2]+' '+time);
     }
 
     const bookInterval = async(date, time_start, time_end) => {
@@ -36,12 +37,9 @@ const DaySchedule = ({currentDate, date, room_id, timeIntervals, bookingsData, b
             time_end
         }
 
-        // await addBooking(data).then(res => bookingsSetState(bookingsData => [...bookingsData, res]));
         await addBooking(data).then(res => {
-            console.log('yes')
-            bookingsSetState(bookingsData => [...bookingsData, res]);
-            console.log('veryyes');
-        });
+            bookingsSetState(bookingsData => [...bookingsData, ...res.booking_info]);
+        }).catch(e=>console.log(e));
     }
 
     const deleteBookingClick = async(booking_id) => {
@@ -49,25 +47,37 @@ const DaySchedule = ({currentDate, date, room_id, timeIntervals, bookingsData, b
             booking_id
         }
 
-        await deleteBooking(data);
+        await deleteBooking(data).then(res => {
+            bookingsSetState(bookingsData => bookingsData.filter(booking => +booking['id'] != +res.booking_id))
+        });
     }
 
     const dayCells = getCells();
 
+    function getBookingByInteval(interval_start, interval_end) {
+        return bookingsData.find(booking => booking['date'] === date
+            && booking['time_start'] === interval_start
+            && booking['time_end'] === interval_end
+        )
+    }
+
     function getCells() {
         return timeIntervals.map((interval, key) => {
-            if(getBookingByInteval(interval['time_start'], interval['time_end'])) {
+            const bookingInInterval = getBookingByInteval(interval['time_start'], interval['time_end']);
+
+            if(bookingInInterval) {
                 return(
                     <td scope="row"
                         className="max-h-[70px] min-h-[70px] bg-white border-r border-b dark:bg-gray-800 dark:border-gray-700 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <div className="block align-top p-[23px] bg-violet-100 text-violet-800 hover:bg-violet-200 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                             <a href="#"
                                className="">
-                                {getBookingByInteval(interval['time_start'], interval['time_end'])['company_name']}
+                                {bookingInInterval['company_name']}
                             </a>
-                            {+user.id === +getBookingByInteval(interval['time_start'], interval['time_end'])['user'] ?
+                            {+user.id === +bookingInInterval['user'] &&
+                            currentDateFormat < formatDate(bookingInInterval['date'], bookingInInterval['time_start']) ?
                                 <button type="button"
-                                        onClick={() => deleteBookingClick(getBookingByInteval(interval['time_start'], interval['time_end'])['id'])}
+                                        onClick={() => deleteBookingClick(bookingInInterval['id'])}
                                         className="pl-[10px] text-gray-400 hover:text-gray-900 text-sm ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
                                     Отменить
                                 </button>
@@ -80,7 +90,7 @@ const DaySchedule = ({currentDate, date, room_id, timeIntervals, bookingsData, b
                 return(
                     <td scope="row"
                         className="max-h-[70px] min-h-[70px] px-6 py-4 bg-white border-r border-b dark:bg-gray-800 dark:border-gray-700 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {currentDate > date ? null :
+                        {currentDateFormat > formatDate(date, interval['time_start']) ? null :
                             <>
                                 <button type="button"
                                         onClick={() => bookInterval(date, interval['time_start'], interval['time_end'])}
