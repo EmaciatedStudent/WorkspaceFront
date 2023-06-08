@@ -6,13 +6,6 @@ export async function RootLoader() {
     let user = await getUser().then(res => res.user? res.user : null)
         .catch(res => console.log(res));
 
-    // const userForLocal = {
-    //     name: 'Яна',
-    //     last_name: 'Лапердина',
-    //     login: 'admin',
-    //     email: 'test@legacystudio.ru'};
-    // user = user? user : userForLocal;
-
     console.log(user);
 
     return {user};

@@ -14,7 +14,6 @@ const RootApp = () => {
                     <Outlet/>
                 </main>
             </RequireAuth>
-
         </>
     );
 }

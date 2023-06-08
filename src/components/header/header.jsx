@@ -32,17 +32,26 @@ const AppHeader = () => {
                 {user ?
                     <>
                         <div className="flex md:order-2">
-
                             <Dropdown arrowIcon={true} inline={true} label={<span
                                 className="elf-center text-violet-800">{user ? user.name + " " + user.last_name : ""}</span>}>
+                            <Dropdown.Item>
+                                <Link to={'documents'}>
+                                    Счета и акты
+                                </Link>
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Link to={'bookingHistory'}>
+                                    История бронирований
+                                </Link>
+                                </Dropdown.Item>
 
                                 <Dropdown.Divider/>
 
-                                <Dropdown.Item>
-                                    <Link to={'profile'}>
-                                        Личный кабинет
-                                    </Link>
-                                </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Link to={'profile'}>
+                                    Личный кабинет
+                                </Link>
+                            </Dropdown.Item>
 
                                 <Dropdown.Item onClick={logOutClick}>
                                     Выход
@@ -58,6 +67,7 @@ const AppHeader = () => {
                             <Link to={'addRoom'}>
                                 Добавить комнату
                             </Link>
+
                         </Navbar.Collapse>
                     </> : null}
             </Navbar>

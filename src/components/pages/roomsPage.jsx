@@ -17,19 +17,20 @@ const RoomsPage = () => {
 
     return (
         <div className="mt-8">
-            <div className="flex float-right">
-                <Link to={'addRoom'}>
 
-                    <button id="defaultModalButton" data-modal-toggle="defaultModal"
-                            className="flex mr-4 block text-white bg-violet-800 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-violet-900 dark:hover:bg-violet-800 dark:focus:ring-primary-800"
-                            type="button">
-                        Добавить
-                    </button>
+            {user.group.name === "Администратор" ?
+                <div className="flex float-right">
+                    <Link to={'addRoom'}>
 
-                </Link>
-            </div>
-            {/*{user.group.name === "Администратор" ?*/}
-            {/*     : null}*/}
+                        <button id="defaultModalButton" data-modal-toggle="defaultModal"
+                                className="flex mr-4 block text-white bg-violet-800 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-violet-900 dark:hover:bg-violet-800 dark:focus:ring-primary-800"
+                                type="button">
+                            Добавить
+                        </button>
+
+                    </Link>
+                </div>
+                 : null}
 
             <div className="w-screen flex">
                 <div className="w-screen">{items}</div>

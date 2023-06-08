@@ -26,8 +26,5 @@ export async function BookingLoader({params}) {
     let roomData = await getRoom(room_id).then(res => res.room_info)
         .catch(res => console.log(res));
 
-    console.log(params.id);
-    console.log(bookingsData);
-
     return {intervalsData, bookingsData, roomData, currentDate,currentWeekDates, currentWeek, currenMonth};
 }

@@ -26,6 +26,20 @@ const useBookingService = () => {
         return res.result;
     }
 
+    const getBookingsByUser = async (user_id) => {
+        const data = {
+            user_id
+        }
+
+        let res = await fetch(`${Server}/api/Booking.GetBookingsByUser`, {
+            method: 'POST',
+            body: JSON.stringify(data)
+        }).then(response => response.json());
+
+        if(res.status === 'error') throw await res.error_message;
+        return res.result;
+    }
+
     const addBooking = async (data) => {
         let res = await fetch(`${Server}/api/Booking.AddBooking`, {
             method: 'POST',
@@ -36,7 +50,17 @@ const useBookingService = () => {
         return res.result;
     }
 
-    return {getTimeIntervals, getBookingsByPeriod, addBooking};
+    const deleteBooking = async (data) => {
+        let res = await fetch(`${Server}/api/Booking.DeleteBooking`, {
+            method: 'POST',
+            body: JSON.stringify(data)
+        }).then(response => response.json());
+
+        if(res.status === 'error') throw await res.error_message;
+        return res.result;
+    }
+
+    return {getTimeIntervals, getBookingsByPeriod, getBookingsByUser, addBooking, deleteBooking};
 }
 
 export default useBookingService;

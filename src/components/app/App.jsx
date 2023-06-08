@@ -17,6 +17,10 @@ import {RoomsLoader} from "../routerLoaders/roomsLoader";
 import SchedulePage from "../pages/schedulePage";
 import {BookingLoader} from "../routerLoaders/bookingLoader";
 import AddRoomPage from "../pages/addRoomPage";
+import BookingHistoryPage from "../pages/bookingHistoryPage";
+import {BookingHistoryLoader} from "../routerLoaders/bookingHistoryLoader";
+import DocumentsPage from "../pages/documentsPage";
+import {DocumentsLoader} from "../routerLoaders/documentsLoader";
 
 function App() {
     const {getUser}  = useUserService();
@@ -53,8 +57,14 @@ function App() {
                     element: <ProfilePage/>,
                 },
                 {
-                    path: "addRoom",
-                    element: <AddRoomPage/>
+                    path: "bookingHistory",
+                    element: <BookingHistoryPage/>,
+                    loader: BookingHistoryLoader
+                },
+                {
+                    path: "documents",
+                    element: <DocumentsPage/>,
+                    loader: DocumentsLoader
                 }
             ],
             loader: RootLoader
