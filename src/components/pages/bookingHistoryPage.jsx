@@ -1,12 +1,10 @@
-import {useSelector} from "react-redux";
-import {getCurrentUser} from "../../store/user/selectors";
 import {useLoaderData} from "react-router-dom";
 import useBookingService from "../../services/bookingService";
 import {useState} from "react";
 
 const BookingHistoryPage = () => {
     const {bookingsData} = useLoaderData();
-    const {deleteBooking} = useBookingService()
+    const {deleteBooking} = useBookingService();
 
     const [bookingData, setBookingData] = useState([...bookingsData]);
 
