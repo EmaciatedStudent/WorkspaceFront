@@ -23,7 +23,7 @@ const DaySchedule = ({currentDate, date, room_id, timeIntervals, bookingsData, b
     const bookInterval = async(date, time_start, time_end) => {
         const dealInfo = await getCompanyDeal(user.company_id).then(res => res.deal);
         // const dealInfo = 4;
-        console.log('ок')
+
         // if (+dealInfo['hours_count'] > +dealInfo['bookings_count']) {
         //
         // }

@@ -34,7 +34,34 @@ const useRoomService = () => {
         return res.result;
     }
 
-    return {getRooms, getRoom, addRoom}
+    const updateRoom = async (room_id, name, office, roominess) => {
+        const data = {
+            room_id,
+            name,
+            office,
+            roominess
+        }
+
+        let res = await fetch(`${Server}/api/Room.UpdateRoom`, {
+            method: 'POST',
+            body: JSON.stringify(data)
+        }).then(response => response.json());
+
+        if(res.status === 'error') throw await res.error_message;
+        return res.result;
+    }
+
+    const deleteRoom = async (data) => {
+        let res = await fetch(`${Server}/api/Room.DeleteRoom`, {
+            method: 'POST',
+            body: JSON.stringify(data)
+        }).then(response => response.json());
+
+        if(res.status === 'error') throw await res.error_message;
+        return res.result;
+    }
+
+    return {getRooms, getRoom, addRoom, updateRoom, deleteRoom}
 }
 
 export default useRoomService;

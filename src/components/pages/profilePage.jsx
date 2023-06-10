@@ -56,7 +56,7 @@ const ProfilePage = () => {
             user_id: user.id,
             password,
             confirm_password
-        }
+        };
 
         await updateUserPassword(data)
             .then(res => dispatch(setCurrentUser(res.user ? res.user : null)))
