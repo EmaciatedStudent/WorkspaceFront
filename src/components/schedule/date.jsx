@@ -38,7 +38,7 @@ const DateService = () => {
             day: '2-digit',
         }));
 
-    const formatDate = (date) => date.toLocaleString('ru-RU', {
+    const formatRuDate = (date) => date.toLocaleString('ru-RU', {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
@@ -75,7 +75,7 @@ const DateService = () => {
         return result;
     }
 
-    return {getWeekDays, getWeekDates, getMonthDaysWithAdditionalDays, getTimeIntervals, formatDate}
+    return {getWeekDays, getWeekDates, getMonthDaysWithAdditionalDays, getTimeIntervals, formatRuDate}
 }
 
 export default DateService;

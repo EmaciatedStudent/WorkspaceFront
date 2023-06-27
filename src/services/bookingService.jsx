@@ -6,7 +6,7 @@ const useBookingService = () => {
             method: 'GET',
         }).then(response => response.json());
 
-        if(res.status === 'error') throw await res.error_message;
+        if(res.status === 'error') throw await res.errormessage;
         return res.result;
     }
 
@@ -22,7 +22,7 @@ const useBookingService = () => {
             body: JSON.stringify(data)
         }).then(response => response.json());
 
-        if(res.status === 'error') throw await res.error_message;
+        if(res.status === 'error') throw await res.errormessage;
         return res.result;
     }
 
@@ -31,12 +31,12 @@ const useBookingService = () => {
             user_id
         }
 
-        let res = await fetch(`${Server}/api/Booking.GetBookingsByUser`, {
+        let res = await fetch(`${Server}/api/Booking.GetUserBookings`, {
             method: 'POST',
             body: JSON.stringify(data)
         }).then(response => response.json());
 
-        if(res.status === 'error') throw await res.error_message;
+        if(res.status === 'error') throw await res.errormessage;
         return res.result;
     }
 
@@ -46,21 +46,31 @@ const useBookingService = () => {
             body: JSON.stringify(data)
         }).then(response => response.json());
 
-        if(res.status === 'error') throw await res.error_message;
+        if(res.status === 'error') throw await res.errormessage;
         return res.result;
     }
 
-    const deleteBooking = async (data) => {
+    const deleteBooking = async(data) => {
         let res = await fetch(`${Server}/api/Booking.DeleteBooking`, {
             method: 'POST',
             body: JSON.stringify(data)
         }).then(response => response.json());
 
-        if(res.status === 'error') throw await res.error_message;
+        if(res.status === 'error') throw await res.errormessage;
         return res.result;
     }
 
-    return {getTimeIntervals, getBookingsByPeriod, getBookingsByUser, addBooking, deleteBooking};
+    const getCompanyBookingsByPeriod = async(data) => {
+        let res = await fetch(`${Server}/api/Booking.GetCompanyBookingsByPeriod`, {
+            method: 'POST',
+            body: JSON.stringify(data)
+        }).then(response => response.json());
+
+        if(res.status === 'error') throw await res.errormessage;
+        return res.result;
+    }
+
+    return {getTimeIntervals, getBookingsByPeriod, getBookingsByUser, getCompanyBookingsByPeriod, addBooking, deleteBooking};
 }
 
 export default useBookingService;

@@ -14,6 +14,9 @@ const RegistrationPage = () => {
     const [confirm_password, setConfirmPassword] = useState('');
     const group = "4";
 
+    const [error, setError] = useState('');
+    const [isError, setIsError] = useState(false);
+
     const dispatch = useDispatch();
 
     const {registration} = useAuthService();
@@ -38,12 +41,15 @@ const RegistrationPage = () => {
 
         await registration(data)
             .then(res => dispatch(setCurrentUser(res.user)))
-            .catch(res => console.log(res));
+            .catch(res => {
+                setError(res.replace(/<br>/g, ' '))
+                setIsError(true)
+            });
     }
 
     return (
         <>
-            <div className="flex w-full h-screen justify-center items-center">
+            <div className="flex w-full justify-center items-center">
                 <div
                     className="w-full bg-white rounded-lg  md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -74,6 +80,12 @@ const RegistrationPage = () => {
                                 Зарегистрироваться
                             </button>
                         </form>
+                        <div
+                            className={isError?"p-4 mt-8 text-sm text-red-800 rounded-lg bg-red-50" : 'hidden'}
+                            role="alert">
+                            <span className="font-medium">ОШИБКА: </span>
+                            {error}
+                        </div>
                     </div>
                 </div>
             </div>

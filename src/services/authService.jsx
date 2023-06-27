@@ -7,7 +7,7 @@ const useAuthService = () => {
             body: JSON.stringify(data)
         }).then(response => response.json());
 
-        if(res.status === 'error') throw await res.error_message;
+        if(res.status === 'error') throw await res.errormessage;
         return res.result;
     }
 
@@ -17,7 +17,7 @@ const useAuthService = () => {
             body: JSON.stringify(data)
         }).then(response => response.json());
 
-        if(res.status === 'error') throw await res.error_message;
+        if(res.status === 'error') throw await res.errormessage;
         return res.result;
     }
 
@@ -26,7 +26,7 @@ const useAuthService = () => {
             method: 'GET'
         }).then(response => response.json());
 
-        if(res.status === 'error') throw await res.error_message;
+        if(res.status === 'error') throw await res.errormessage;
         return res.result;
     }
 

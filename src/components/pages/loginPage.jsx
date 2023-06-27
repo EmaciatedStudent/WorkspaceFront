@@ -5,6 +5,7 @@ import {useState} from "react";
 import InputAuth from "../inputs/InputAuth";
 import {setCurrentUser} from "../../store/user/slice";
 import useAuthService from "../../services/authService";
+import {Dialog} from "primereact/dialog";
 
 const LoginPage = () => {
     const [login, setLogin] = useState("");
@@ -31,16 +32,16 @@ const LoginPage = () => {
 
         await logIn(data)
             .then(res => dispatch(setCurrentUser(res.user ? res.user : null)))
-            .then(() => navigate(fromPage, {replace: true}));
-            // .catch(res => {
-            //     setError(res)
-            //     setIsError(true)
-            // });
+            .then(() => navigate(fromPage, {replace: true}))
+            .catch(res => {
+                setError(res.replace(/<br>/g, ''));
+                setIsError(true);
+            });
     }
 
     return (
         <>
-            <div className="mx-auto h-screen justify-center items-center p-6 bg-white md:mt-0 sm:max-w-md sm:p-8">
+            <div className="mx-auto justify-center items-center p-6 bg-white md:mt-0 sm:max-w-md sm:p-8">
                 <div className="p-4 bg-white  sm:p-5">
                     <div
                         className="flex justify-between items-center pb-4 mb-4 rounded-t sm:mb-5 dark:border-gray-600">
@@ -72,10 +73,10 @@ const LoginPage = () => {
                     <div
                         className={isError ? "p-4 mt-8 text-sm text-red-800 rounded-lg bg-red-50" : "hidden"}
                         role="alert">
-                        <span className="font-medium">ОШИБКА</span> {error}
+                        <span className="font-medium">ОШИБКА: </span>
+                        {error}
                     </div>
                 </div>
-
             </div>
         </>
     );

@@ -41,8 +41,7 @@ const RoomsPage = () => {
 
         await addRoom(data)
             .then(res => {
-                // console.log(res.room_info);
-                setRoomData(roomData => [...roomData, ...res.room_info]);
+                setRoomData(roomData => [...roomData, res.room_info]);
 
                 setName("");
                 setOffice("");
@@ -70,10 +69,12 @@ const RoomsPage = () => {
             {user.group.name === "Администратор" ?
                 <div className="flex float-right">
                     <button label="Show" icon="pi pi-external-link" onClick={() => setAddRoomVisible(true)}
-                            className="flex mr-4 block text-white bg-violet-800 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-violet-900 dark:hover:bg-violet-800 dark:focus:ring-primary-800">
+                            className="flex mr-4 block text-white bg-violet-800 hover:bg-violet-900 focus:ring-4 focus:outline-none focus:ring-violet-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-violet-900 dark:hover:bg-violet-800 dark:focus:ring-violet-800">
                         Добавить
                     </button>
-                </div> : null}
+                </div>
+                 : null}
+
 
             <div className="w-screen flex">
                 <div className="w-screen">{renderRooms(roomData)}</div>
@@ -108,18 +109,8 @@ const RoomsPage = () => {
                                    required/>
                         </div>
 
-                        <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Количество мест
-                            </label>
-                            <input type="number" name="roominess" id="roominess"
-                                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focuborder-violet-800 focus:border-violet-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-400 dark:focus:border-violet-400"
-                                   value={roominess}
-                                   onChange={(e) => setRoominess(e.target.value)}
-                                   required/>
-                        </div>
                         <button type="submit"
-                                className="w-full text-white bg-violet-800 hover:bg-violet-900 focus:ring-4 focus:outline-none focus:ring-violet-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-violet-800 dark:hover:bg-violet-900 dark:focus:ring-primary-800"
+                                className="w-full text-white bg-violet-800 hover:bg-violet-900 focus:ring-4 focus:outline-none focus:ring-violet-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-violet-800 dark:hover:bg-violet-900 dark:focus:ring-violet-800"
                         >
                             Добавить
                         </button>

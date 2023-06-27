@@ -27,21 +27,15 @@ const RoomCard = ({room, roomData, setRoomData}) => {
     const updateRoomClick = async(e) => {
         e.preventDefault();
 
-        console.log("id " + id);
-        console.log("upOffice " + updatedOffice);
-        console.log("office " + office);
-
         await updateRoom(id, updatedName, updatedOffice, updatedRoominess)
             .then(res => {
-                console.log(res.room_info)
                 setName(updatedName);
                 setOffice(updatedOffice);
                 setRoominess(updatedRoominess);
 
-                setRoomData(roomData => [...roomData.filter(room => +room['id'] != +id), ...res.room_info]);
+                setRoomData(roomData => [...roomData.filter(room => +room['id'] != +id), res.room_info]);
             })
             .then(res => {
-                console.log("yes");
                 setIsError(false)
             })
             .then(res => {
@@ -80,9 +74,13 @@ const RoomCard = ({room, roomData, setRoomData}) => {
             </Link>
             <div className="self-end">
                 {user.group.name === "Администратор" ?
-                    <button label="Show" icon="pi pi-external-link" onClick={() => setUpdateRoomVisible(true)} className="inline-flex mr-2 items-center px-3 py-2 text-sm font-medium text-center text-white bg-violet-800 rounded-lg hover:bg-violet-900 focus:ring-4 focus:outline-none focus:ring-violet-500 ">
+                    <button label="Show" icon="pi pi-external-link"
+                            onClick={() => setUpdateRoomVisible(true)}
+                            className="inline-flex mr-2 items-center px-3 py-2 text-sm font-medium text-center text-white bg-violet-800 rounded-lg hover:bg-violet-900 focus:ring-4 focus:outline-none focus:ring-violet-500">
                         Редактировать
-                    </button> : null}
+                    </button>
+                     : null}
+
 
                 <Link to={id}
                       className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-violet-800 rounded-lg hover:bg-violet-900 focus:ring-4 focus:outline-none focus:ring-violet-500 ">
@@ -121,17 +119,6 @@ const RoomCard = ({room, roomData, setRoomData}) => {
                                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focuborder-violet-800 focus:border-violet-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-400 dark:focus:border-violet-400"
                                    value={updatedOffice}
                                    onChange={(e) => setUpdatedOffice(e.target.value)}
-                                   required/>
-                        </div>
-
-                        <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Количество мест
-                            </label>
-                            <input type="number" name="roominess" id="roominess"
-                                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focuborder-violet-800 focus:border-violet-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-400 dark:focus:border-violet-400"
-                                   value={updatedRoominess}
-                                   onChange={(e) => setUpdatedRoominess(e.target.value)}
                                    required/>
                         </div>
                         <button type="submit"

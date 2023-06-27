@@ -11,8 +11,17 @@ const useCompanyService = () => {
         return res.result;
     }
 
+    const getCompanies = async() => {
+        let res = await fetch(`${Server}/api/Company.GetCompaniesInfo`, {
+            method: 'GET'
+        }).then(response => response.json());
+
+        if(res.status === 'error') throw await res.error_message;
+        return res.result;
+    }
+
     const getCompanyDeal = async(data) => {
-        let res = await fetch(`${Server}/api/Deal.GetCompanyDeal`, {
+        let res = await fetch(`${Server}/api/Deal.GetDealByCompany`, {
             method: 'POST',
             body: JSON.stringify(data)
         }).then(response => response.json());
@@ -21,7 +30,7 @@ const useCompanyService = () => {
         return res.result;
     }
 
-    return {getCompany, getCompanyDeal}
+    return {getCompany, getCompanyDeal, getCompanies}
 }
 
 export default useCompanyService;

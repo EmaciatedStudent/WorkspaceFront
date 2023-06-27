@@ -5,13 +5,14 @@ import DateService from "../schedule/date";
 export async function BookingLoader({params}) {
     const {getTimeIntervals, getBookingsByPeriod} = useBookingService();
     const {getRoom} = useRoomService();
-    const {getWeekDates, getWeekDays, formatDate, getMonthDaysWithAdditionalDays} = DateService();
+    const {getWeekDates, getWeekDays, formatRuDate, getMonthDaysWithAdditionalDays} = DateService();
 
     let currentDate = new Date();
+    // let currentDate = new Date(2023, 5, 12, 13);
     const currentWeekDates = getWeekDates(currentDate);
     const currentWeek = getWeekDays(currentDate);
     const currenMonth = getMonthDaysWithAdditionalDays(currentDate);
-    currentDate = formatDate(currentDate);
+    currentDate = formatRuDate(currentDate);
 
     const date_start = currentWeekDates[0];
     const date_end = currentWeekDates[6];

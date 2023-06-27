@@ -21,6 +21,12 @@ import BookingHistoryPage from "../pages/bookingHistoryPage";
 import {BookingHistoryLoader} from "../routerLoaders/bookingHistoryLoader";
 import DocumentsPage from "../pages/documentsPage";
 import {DocumentsLoader} from "../routerLoaders/documentsLoader";
+import BookingReportsPage from "../pages/bookingReportsPage";
+import {BookingReportsLoader} from "../routerLoaders/bookingReportsLoader";
+import CompaniesPage from "../pages/companiesPage";
+import {CompaniesLoader} from "../routerLoaders/companiesLoader";
+import DocumentsAdminPage from "../pages/documentsAdminPage";
+import {DocumentsAdminLoader} from "../routerLoaders/documentsAdminLoader";
 
 function App() {
     const {getUser}  = useUserService();
@@ -65,6 +71,21 @@ function App() {
                     path: "documents",
                     element: <DocumentsPage/>,
                     loader: DocumentsLoader
+                },
+                {
+                    path: "bookingReports",
+                    element: <BookingReportsPage/>,
+                    loader: BookingReportsLoader
+                },
+                {
+                    path: "companies",
+                    element: <CompaniesPage/>,
+                    loader: CompaniesLoader
+                },
+                {
+                    path: "documentsAdmin",
+                    element: <DocumentsAdminPage/>,
+                    loader: DocumentsAdminLoader
                 }
             ],
             loader: RootLoader

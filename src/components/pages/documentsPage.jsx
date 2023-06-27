@@ -1,4 +1,4 @@
-import {useLoaderData} from "react-router-dom";
+import {Link, useLoaderData} from "react-router-dom";
 
 const DocumentsPage = () => {
     const {actData, invoiceData} = useLoaderData();
@@ -9,7 +9,38 @@ const DocumentsPage = () => {
 
     return (
         <>
-            <div className="m-5">
+            <div className="fixed top-[54px] left-0 z-40 h-screen p-4 overflow-y-auto  bg-white w-80 dark:bg-gray-800">
+                <div className="py-4 overflow-y-auto">
+                    <ul className="space-y-2 font-medium">
+                        <li>
+                            <Link to={'/profile'}
+                                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <span className="ml-3">Личный кабинет</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={'/bookingHistory'}
+                                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <span className="flex-1 ml-3 whitespace-nowrap">История бронирований</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={'/documents'}
+                                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <span className="flex-1 ml-3 whitespace-nowrap">Счета и акты</span>
+                            </Link>
+                        </li>
+                        {/*<hr/>*/}
+                        <li>
+                            <a href="#"
+                               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <span className="flex-1 ml-3 whitespace-nowrap">Выход</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div className="ml-[320px] m-5">
                 <div className="relative">
                     <h1 className="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
                         Счета и акты

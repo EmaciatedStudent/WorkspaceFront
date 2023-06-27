@@ -3,15 +3,20 @@ import {getCurrentUser} from "../../store/user/selectors";
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
 import useUserService from "../../services/userService";
+import {Link} from "react-router-dom";
 
 const ProfilePage = () => {
     const user = useSelector(getCurrentUser);
     const dispatch = useDispatch();
 
     const [name, setName] = useState(user.name);
+    // const [name, setName] = useState('Яна');
     const [last_name, setLastName] = useState(user.last_name);
+    // const [last_name, setLastName] = useState('Лапердина');
     const [login, setLogin] = useState(user.login);
+    // const [login, setLogin] = useState('admin');
     const [email, setEmail] = useState(user.email);
+    // const [email, setEmail] = useState('123');
 
     const [password, setPassword] = useState("");
     const [confirm_password, setConfirmPassword] = useState("");
@@ -79,6 +84,37 @@ const ProfilePage = () => {
 
     return(
         <>
+            <div className="fixed top-[54px] left-0 border-l z-40 h-screen p-4 overflow-y-auto  bg-white w-80 dark:bg-gray-800">
+                <div className="py-4 overflow-y-auto">
+                    <ul className="space-y-2 font-medium">
+                        <li>
+                            <Link to={'/profile'}
+                               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <span className="ml-3">Личный кабинет</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={'/bookingHistory'}
+                               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <span className="flex-1 ml-3 whitespace-nowrap">История бронирований</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={'/documents'}
+                               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <span className="flex-1 ml-3 whitespace-nowrap">Счета и акты</span>
+                            </Link>
+                        </li>
+                        {/*<hr/>*/}
+                        <li>
+                            <a href="#"
+                               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <span className="flex-1 ml-3 whitespace-nowrap">Выход</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <div className="mx-auto h-screen justify-center items-center p-6 bg-white rounded-lg md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
                 <h1 className="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
                     {updateData||updatePassword ? null : "Личный кабинет"}
@@ -177,6 +213,41 @@ const ProfilePage = () => {
                                        value={email}
                                        disabled/>
                             </div>
+                            <hr/>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    Компания: ТестКомпания
+                                </label>
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    Договор #13669 c 01.06.2023 по 30.06.2023
+                                    <a className="ml-8 font-medium text-violet-800 dark:text-violet-900 hover:underline">
+                                        Просмотр
+                                    </a>
+                                </label>
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-sm font-medium text-violet-800 dark:text-white">
+                                    Часов для бронирования выделено:
+                                    <span className="ml-6 font-medium text-violet-800 dark:text-violet-900">
+                                        8
+                                    </span>
+                                </label>
+                                <label className="block mb-2 text-sm font-medium text-violet-800 dark:text-white">
+                                    Часов добавлено:
+                                    <span className="ml-6 font-medium text-violet-800 dark:text-violet-900">
+                                        0
+                                    </span>
+                                </label>
+                                <label className="block mb-2 text-sm font-medium text-violet-800 dark:text-white">
+                                    Часов израсходовано:
+                                    <span className="ml-6 font-medium text-violet-800 dark:text-violet-900">
+                                        3.5
+                                    </span>
+                                </label>
+                            </div>
+                            <hr/>
                         </>
                     }
                 </form>

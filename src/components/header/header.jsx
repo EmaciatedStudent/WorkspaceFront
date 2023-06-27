@@ -32,13 +32,17 @@ const AppHeader = () => {
                 {user ?
                     <>
                         <div className="flex md:order-2">
-                            <Dropdown arrowIcon={true} inline={true} label={<span
-                                className="elf-center text-violet-800">{user ? user.name + " " + user.last_name : ""}</span>}>
+                            <Dropdown arrowIcon={true} inline={true} label={
+                                <span className="elf-center text-violet-800">
+                                    {/*{user ? user.name + " " + user.last_name : ""}*/}
+                                </span>}>
+
                                 <Dropdown.Item>
                                     <Link to={'documents'}>
                                         Счета и акты
                                     </Link>
                                 </Dropdown.Item>
+
                                 <Dropdown.Item>
                                     <Link to={'bookingHistory'}>
                                         История бронирований
@@ -56,7 +60,6 @@ const AppHeader = () => {
                                 <Dropdown.Item onClick={logOutClick}>
                                     Выход
                                 </Dropdown.Item>
-
                             </Dropdown>
                             <Navbar.Toggle/>
                         </div>
@@ -64,8 +67,30 @@ const AppHeader = () => {
                             <Link to={'rooms'}>
                                 Переговорные и конференц-залы
                             </Link>
+                            {user.group.name === "Администратор" ?
+                                <Link to={'companies'}>
+                                    Компании
+                                </Link>
+                                : null}
+
+
+                            {user.group.name === "Администратор" ?
+                                <Link to={'documentsAdmin'}>
+                                    Счета и акты
+                                </Link>
+                                : null}
+
+
+                            {user.group.name === "Администратор" ?
+                                <Link to={'bookingReports'}>
+                                    Отчеты
+                                </Link>
+                                : null}
+
+
                         </Navbar.Collapse>
                     </> : null}
+
             </Navbar>
         </header>
     );
